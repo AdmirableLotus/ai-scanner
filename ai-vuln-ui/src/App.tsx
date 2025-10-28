@@ -52,16 +52,38 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>Red Lotus Scan</h1>
-      <textarea
-        placeholder="Paste your code here..."
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-      />
-      <button onClick={analyze} disabled={loading || !code.trim()}>
-        {loading ? "Scanning..." : "Analyze"}
-      </button>
+    <>
+      {/* Red Lotus Floating Background */}
+      <div className="lotus-bg">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#ff3333" strokeWidth="6" strokeLinecap="round">
+            <path d="M256 460c90-100 180-180 180-260-10-90-80-140-180-140s-170 50-180 140c0 80 90 160 180 260z" fill="rgba(255,0,0,0.1)"/>
+            <path d="M256 460c-40-90-100-160-160-220" stroke="rgba(255,0,0,0.35)"/>
+            <path d="M256 460c40-90 100-160 160-220" stroke="rgba(255,0,0,0.35)"/>
+          </g>
+        </svg>
+      </div>
+      
+      {/* Scanning beam overlay */}
+      <div className="scan-beam" aria-hidden="true"></div>
+      
+      <div className="container">
+        <h1>Red Lotus Scan</h1>
+        <textarea
+          placeholder="Paste your code here..."
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <div className="controls">
+          <button onClick={analyze} disabled={loading || !code.trim()} className={loading ? 'scanning' : ''}>
+            {loading ? (
+              <>
+                <span className="scan-text">Scanning</span>
+                <span className="dots">...</span>
+              </>
+            ) : "Analyze"}
+          </button>
+        </div>
       
       {error && <div className="error">{error}</div>}
       
@@ -121,7 +143,8 @@ function App() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
 
