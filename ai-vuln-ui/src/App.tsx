@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import "./App.css";
 
@@ -27,8 +27,24 @@ function App() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const lotusRef = useRef<HTMLDivElement>(null);
+  const rippleRef = useRef<HTMLDivElement>(null);
 
   const analyze = async () => {
+    // Trigger lotus bloom animation
+    if (lotusRef.current) {
+      lotusRef.current.classList.remove('pulse');
+      void lotusRef.current.offsetWidth; // restart animation
+      lotusRef.current.classList.add('pulse');
+    }
+    
+    // Trigger ripple animation
+    if (rippleRef.current) {
+      rippleRef.current.classList.remove('active');
+      void rippleRef.current.offsetWidth; // restart animation
+      rippleRef.current.classList.add('active');
+    }
+    
     setLoading(true);
     setError("");
     setResult(null);
@@ -53,15 +69,46 @@ function App() {
 
   return (
     <>
-      {/* Red Lotus Floating Background */}
-      <div className="lotus-bg">
+      {/* Glowing Red Lotus with Ripple */}
+      <div className="lotus-bg" ref={lotusRef}>
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#ff3333" strokeWidth="6" strokeLinecap="round">
-            <path d="M256 460c90-100 180-180 180-260-10-90-80-140-180-140s-170 50-180 140c0 80 90 160 180 260z" fill="rgba(255,0,0,0.1)"/>
-            <path d="M256 460c-40-90-100-160-160-220" stroke="rgba(255,0,0,0.35)"/>
-            <path d="M256 460c40-90 100-160 160-220" stroke="rgba(255,0,0,0.35)"/>
+          <g fill="rgba(255,0,0,0.12)" stroke="#ff3333" strokeWidth="2.5" strokeLinejoin="round">
+            {/* Inner petals */}
+            <path d="M256 200
+                     C220 260, 220 340, 256 380
+                     C292 340, 292 260, 256 200Z" />
+            <path d="M256 210
+                     C200 250, 190 340, 240 380
+                     C200 320, 210 250, 256 210Z" />
+            <path d="M256 210
+                     C312 250, 322 340, 272 380
+                     C312 320, 302 250, 256 210Z" />
+            
+            {/* Middle petals */}
+            <path d="M256 190
+                     C180 240, 170 360, 230 390
+                     C180 320, 190 240, 256 190Z" />
+            <path d="M256 190
+                     C332 240, 342 360, 282 390
+                     C332 320, 322 240, 256 190Z" />
+            
+            {/* Outer petals */}
+            <path d="M256 170
+                     C140 260, 160 400, 240 410
+                     C150 330, 160 230, 256 170Z" />
+            <path d="M256 170
+                     C372 260, 352 400, 272 410
+                     C362 330, 352 230, 256 170Z" />
+            
+            {/* Base leaves */}
+            <path d="M180 370
+                     C256 420, 332 370, 256 400
+                     C210 380, 200 380, 180 370Z" />
           </g>
         </svg>
+        
+        {/* Ripple layer */}
+        <div className="lotus-ripple" ref={rippleRef}></div>
       </div>
       
       {/* Scanning beam overlay */}

@@ -16,31 +16,77 @@ body {
   overflow-x: hidden;
 }
 
-/* Floating, glowing lotus */
 .lotus-bg {
   position: fixed;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
-  opacity: 0.18;
+  width: 480px;
+  height: 480px;
   z-index: -2;
-  filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.5));
+  opacity: 0.22;
+  filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.7));
   animation: lotusFloat 10s ease-in-out infinite, lotusGlow 4s ease-in-out infinite alternate;
 }
 
-/* floating motion — gentle up/down breathing */
+/* breathing float motion */
 @keyframes lotusFloat {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -52%) scale(1.03); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -53%) scale(1.05); }
 }
 
 /* glowing pulse */
 @keyframes lotusGlow {
-  0% { opacity: 0.12; filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.3)); }
-  100% { opacity: 0.25; filter: drop-shadow(0 0 50px rgba(255, 0, 0, 0.8)); }
+  0% { opacity: 0.15; filter: drop-shadow(0 0 12px rgba(255, 0, 0, 0.4)); }
+  100% { opacity: 0.3; filter: drop-shadow(0 0 60px rgba(255, 0, 0, 1)); }
+}
+
+/* pulse on click */
+.lotus-bg.pulse {
+  animation: lotusBloom 0.9s ease-out;
+}
+
+@keyframes lotusBloom {
+  0% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4)); }
+  50% { transform: translate(-50%, -50%) scale(1.25); filter: drop-shadow(0 0 120px rgba(255, 60, 60, 1)); }
+  100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.7)); }
+}
+
+.lotus-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, rgba(255, 0, 0, 0.1) 60%, transparent 100%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: -3;
+  pointer-events: none;
+}
+
+/* Ripple animation when triggered */
+.lotus-ripple.active {
+  animation: rippleWave 1.4s ease-out forwards;
+}
+
+@keyframes rippleWave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.4;
+    filter: blur(1px);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(4.5);
+    opacity: 0.2;
+    filter: blur(2px);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+    filter: blur(4px);
+  }
 }
 
 /* Scanning beam overlay */
