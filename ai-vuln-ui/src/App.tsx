@@ -13,6 +13,7 @@ interface Finding {
 interface AnalysisResult {
   ai_analysis: string;
   static_findings: Finding[];
+  bounty_report: string;
   summary: {
     total_issues: number;
     critical: number;
@@ -98,6 +99,25 @@ function App() {
           <div className="ai-analysis">
             <h3>AI Analysis</h3>
             <pre className="output">{result.ai_analysis}</pre>
+          </div>
+          
+          <div className="bounty-report">
+            <h3>Bug Bounty Report</h3>
+            <button 
+              className="download-btn"
+              onClick={() => {
+                const blob = new Blob([result.bounty_report], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `vulnerability-report-${new Date().toISOString().split('T')[0]}.md`;
+                a.click();
+                URL.revokeObjectURL(url);
+              }}
+            >
+              Download Report (.md)
+            </button>
+            <pre className="report-preview">{result.bounty_report}</pre>
           </div>
         </div>
       )}

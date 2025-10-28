@@ -1,20 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0b0b0b;
+  min-height: 100vh;
+  color: white;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/red-lotus.svg') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.15;
+  z-index: -1;
+  filter: brightness(0.8) contrast(1.2);
+}
+
 .container {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
-  background-image: url('/red-lotus.svg');
-  background-repeat: no-repeat;
-  background-position: top right;
-  background-size: 120px;
-  background-attachment: fixed;
-  opacity: 0.95;
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
   text-align: center;
-  color: #cc0000;
+  color: #ff3333;
   font-size: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
   margin-bottom: 2rem;
   font-family: 'Arial Black', sans-serif;
 }
@@ -25,10 +45,17 @@ textarea {
   margin: 1rem 0;
   font-family: 'Courier New', monospace;
   padding: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  resize: vertical;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #ff4444;
+  border-radius: 6px;
+  color: #fff;
   font-size: 14px;
+  resize: vertical;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+textarea::placeholder {
+  color: #aaa;
 }
 
 button {
@@ -36,19 +63,18 @@ button {
   margin: 0 auto 2rem;
   padding: 12px 24px;
   font-size: 16px;
-  background: linear-gradient(45deg, #cc0000, #ff4444);
+  background: linear-gradient(90deg, #ff4444, #cc0000);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 8px rgba(204,0,0,0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
 }
 
 button:hover:not(:disabled) {
-  background: linear-gradient(45deg, #aa0000, #cc2222);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(204,0,0,0.4);
+  background: linear-gradient(90deg, #ff6666, #ff0000);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
 }
 
 button:disabled {
@@ -57,12 +83,12 @@ button:disabled {
 }
 
 .error {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff6666;
   padding: 1rem;
   border-radius: 6px;
   margin: 1rem 0;
-  border: 1px solid #f5c6cb;
+  border: 1px solid #ff4444;
 }
 
 .results {
@@ -70,10 +96,12 @@ button:disabled {
 }
 
 .summary {
-  background: #f8f9fa;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #ff4444;
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
 }
 
 .stats {
@@ -98,12 +126,12 @@ button:disabled {
 }
 
 .finding {
-  background: white;
-  border: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #444;
   border-radius: 6px;
   padding: 1rem;
   margin: 0.5rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
 }
 
 .finding-header {
@@ -122,28 +150,29 @@ button:disabled {
 
 .type {
   font-weight: bold;
-  color: #495057;
+  color: #fff;
 }
 
 .line {
-  color: #6c757d;
+  color: #aaa;
   font-size: 0.9em;
 }
 
 .description {
   margin: 0.5rem 0;
-  color: #495057;
+  color: #ccc;
 }
 
 .code-snippet {
   display: block;
-  background: #f8f9fa;
+  background: rgba(0, 0, 0, 0.3);
   padding: 0.5rem;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
-  color: #e83e8c;
+  color: #ff6666;
   margin-top: 0.5rem;
+  border: 1px solid #333;
 }
 
 .ai-analysis {
@@ -161,4 +190,40 @@ button:disabled {
   font-size: 14px;
   line-height: 1.5;
   overflow-x: auto;
+}
+
+.bounty-report {
+  margin-top: 2rem;
+  border: 2px solid #ff4444;
+  border-radius: 8px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+.download-btn {
+  background: linear-gradient(45deg, #cc0000, #ff4444);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.download-btn:hover {
+  background: linear-gradient(45deg, #aa0000, #cc2222);
+}
+
+.report-preview {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.4;
 }

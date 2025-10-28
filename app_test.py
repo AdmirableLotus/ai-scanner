@@ -3,6 +3,7 @@ import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from static_analyzer import StaticAnalyzer
+from report_generator import BountyReportGenerator
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -11,6 +12,7 @@ app = Flask(__name__)
 CORS(app)
 
 static_analyzer = StaticAnalyzer()
+report_generator = BountyReportGenerator()
 
 def sanitize_code(code):
     """Basic sanitization: remove potentially harmful characters"""
@@ -57,9 +59,13 @@ Note: This is a test version. For full AI analysis, ensure Ollama with Unisast m
         
         logging.info("Code analysis completed successfully")
         
+        # Generate bug bounty report
+        bounty_report = report_generator.generate_report(static_findings, {"target": "Code Analysis"})
+        
         return jsonify({
             "ai_analysis": ai_analysis,
             "static_findings": static_findings,
+            "bounty_report": bounty_report,
             "summary": {
                 "total_issues": len(static_findings),
                 "critical": len([f for f in static_findings if f['severity'] == 'Critical']),
