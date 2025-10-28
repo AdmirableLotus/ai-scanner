@@ -116,6 +116,14 @@ function App() {
       
       <div className="container">
         <h1>Red Lotus Scan</h1>
+        
+        <div className="test-notice">
+          <span className="notice-icon">⚠️</span>
+          <span className="notice-text">
+            Test Version - For full AI analysis, ensure Ollama with Unisast model is running
+          </span>
+        </div>
+        
         <textarea
           placeholder="Paste your code here..."
           value={code}

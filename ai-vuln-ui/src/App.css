@@ -7,9 +7,10 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: #000;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   color: #fff;
   font-family: 'Consolas', monospace;
 }
@@ -124,7 +125,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 1rem;
+  padding: 1rem 1rem 4rem 1rem;
   position: relative;
   z-index: 10;
   display: flex;
@@ -133,6 +134,7 @@ body {
   text-align: center;
   pointer-events: auto;
   backdrop-filter: blur(0.5px);
+  min-height: calc(100vh - 4rem);
 }
 
 h1 {
