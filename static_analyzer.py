@@ -12,10 +12,32 @@ class StaticAnalyzer:
                 r'INSERT.*\+.*VALUES'
             ],
             'xss': [
+                # Reflected XSS patterns
                 r'innerHTML\s*=.*\+',
                 r'document\.write\s*\(.*\+',
+                r'outerHTML\s*=.*\+',
+                r'insertAdjacentHTML\s*\(',
+                # DOM-based XSS patterns
                 r'eval\s*\(',
-                r'dangerouslySetInnerHTML'
+                r'setTimeout\s*\(.*\+',
+                r'setInterval\s*\(.*\+',
+                r'Function\s*\(',
+                # React XSS patterns
+                r'dangerouslySetInnerHTML',
+                # URL/redirect XSS
+                r'location\.href\s*=.*\+',
+                r'window\.open\s*\(.*\+',
+                r'document\.location\s*=.*\+',
+                # Event handler XSS
+                r'onclick\s*=.*\+',
+                r'onload\s*=.*\+',
+                r'onerror\s*=.*\+',
+                # Template/string interpolation XSS
+                r'\$\{.*\}',
+                r'<%.*%>',
+                # PDF XSS patterns
+                r'<img.*onerror',
+                r'<script.*src.*http'
             ],
             'command_injection': [
                 r'os\.system\s*\(.*\+',
@@ -66,10 +88,10 @@ class StaticAnalyzer:
     
     def _get_description(self, vuln_type: str) -> str:
         descriptions = {
-            'sql_injection': 'Potential SQL injection vulnerability detected',
-            'command_injection': 'Command injection vulnerability detected',
-            'xss': 'Cross-site scripting vulnerability detected',
-            'path_traversal': 'Path traversal vulnerability detected',
-            'insecure_deserialization': 'Insecure deserialization detected'
+            'sql_injection': 'SQL injection: User input concatenated into SQL query without sanitization',
+            'command_injection': 'Command injection: User input passed to system command execution',
+            'xss': 'XSS: User input rendered in DOM without proper encoding/sanitization',
+            'path_traversal': 'Path traversal: User input used in file path without validation',
+            'insecure_deserialization': 'Insecure deserialization: Untrusted data deserialized without validation'
         }
         return descriptions.get(vuln_type, 'Security vulnerability detected')
