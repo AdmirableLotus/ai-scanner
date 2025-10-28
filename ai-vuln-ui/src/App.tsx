@@ -49,7 +49,7 @@ function App() {
     setError("");
     setResult(null);
     try {
-      const response = await axios.post("http://127.0.0.1:5000/analyze", { code });
+      const response = await axios.post("http://127.0.0.1:5001/analyze", { code });
       setResult(response.data);
     } catch (err: any) {
       setError("Error: " + err.message);
