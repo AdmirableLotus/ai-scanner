@@ -1,4 +1,6 @@
 # Red Lotus Scan
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/880bfddb-121e-4bc5-a476-aa34b0316d53" />
+
 
 A comprehensive AI-powered vulnerability scanner with automated bug bounty report generation.
 
