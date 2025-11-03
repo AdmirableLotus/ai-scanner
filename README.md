@@ -1,7 +1,9 @@
 # Red Lotus Scan
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/880bfddb-121e-4bc5-a476-aa34b0316d53" />
 
+🌟 Sponsors
 
+Huge thanks to everyone supporting Red Lotus Scan 💖
 A comprehensive AI-powered vulnerability scanner with automated bug bounty report generation.
 
 ![Red Lotus Scan](https://img.shields.io/badge/Security-Scanner-red) ![Version](https://img.shields.io/badge/Version-1.0-blue) ![License](https://img.shields.io/badge/License-MIT-green)
@@ -296,5 +298,6 @@ For issues and questions:
 - Review the vulnerability detection patterns
 
 ---
+
 
 **Red Lotus Scan** - Professional AI-Powered Vulnerability Scanner with Automated Bug Bounty Reporting
