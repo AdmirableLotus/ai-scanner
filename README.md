@@ -298,6 +298,14 @@ For issues and questions:
 - Review the vulnerability detection patterns
 
 ---
+🔗 Connect
 
+👩‍💻 Maintainer: Alyona Lotus
+💖 Sponsor: GitHub Sponsors
+
+🌟 Sponsors
+
+Huge thanks to everyone supporting Red Lotus Scan 💖
+Want to appear here? Sponsor this project
 
 **Red Lotus Scan** - Professional AI-Powered Vulnerability Scanner with Automated Bug Bounty Reporting
