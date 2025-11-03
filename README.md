@@ -5,7 +5,10 @@
 A comprehensive AI-powered vulnerability scanner with automated bug bounty report generation.
 
 ![Red Lotus Scan](https://img.shields.io/badge/Security-Scanner-red) ![Version](https://img.shields.io/badge/Version-1.0-blue) ![License](https://img.shields.io/badge/License-MIT-green)
-
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8+-yellow.svg)]()
+[![React](https://img.shields.io/badge/frontend-React-blueviolet.svg)]()
+[![Sponsor](https://img.shields.io/badge/Sponsor-💖-brightgreen)](https://github.com/sponsors/AdmirableLotus)
 ## 🌺 Overview
 
 Red Lotus Scan is a professional security vulnerability scanner that combines static analysis with AI-powered detection to identify security flaws in source code. It features automated bug bounty report generation, making it perfect for security researchers and penetration testers.
